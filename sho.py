@@ -7,16 +7,23 @@ parser = argparse.ArgumentParser(
                     description = 'What the program does',
                     epilog = 'Text at the bottom of help')
 
-parser.add_argument('-i', '--ip')
-parser.add_argument('-d', '--domain')
+parser.add_argument('-i', '--ip', type=str)
+parser.add_argument('-d', '--domain', type=str)
 
 args = parser.parse_args()
 
-api_key = shodan.Shodan("");
+api_key = shodan.Shodan("7daDcD0wcDnczyFX2E4jIHoDG41s2iZB");
 
-print(api_key);
+if args.ip:
+        os.system("shodan host --save " + args.ip)
+        os.system("shodan parse " + args.ip + ".json.gz")
+        os.system("shodan convert " + args.ip + ".json.gz images")
+elif args.domain:
+        os.system("shodan host " + args.domain)
+else:
+        print("No arguments")
 
-os.system("pip install setuptools")
+
 
 
 
