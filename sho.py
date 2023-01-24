@@ -12,7 +12,7 @@ parser.add_argument('-d', '--domain')
 
 args = parser.parse_args()
 
-api_key = shodan.Shodan("7daDcD0wcDnczyFX2E4jIHoDG41s2iZB");
+api_key = shodan.Shodan("");
 
 print(api_key);
 
