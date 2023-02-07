@@ -1,6 +1,15 @@
-import os
+#import os
 import argparse
 from dotenv import load_dotenv
+
+import requests
+
+
+def searchFromPhoneNumber(phone_number):
+    url = 'https://www.telephoneannuaire.fr/search'
+    post_obj = {'r_who': phone_number}
+    response = requests.post(url, data=post_obj)
+    print(response.content)
 
 def parseArgs():
     parser = argparse.ArgumentParser()
@@ -16,16 +25,25 @@ def parseArgs():
 
 
     args = parser.parse_args()
-    
-    match args:
-        case args.email:
-            print("infos")
-        case args.phone:
-            print("infos")
-        case args.ip:
-            print("infos")
-        case args.domain_name:
-            print("infos")
+
+    if args.email:
+        # api-endpoint
+        url = "https://haveibeenpwned.com/unifiedsearch"
+
+
+        param = {'email': args.email}
+
+
+        r = requests.get(url=url, params=param)
+        print(r.json())
+    if args.phone:
+        searchFromPhoneNumber(args.phone)
+
+    if args.ip_address:
+        print("infos")
+    if args.domain_name:
+        print("infos")
+
 
 
 
