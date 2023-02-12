@@ -1,0 +1,19 @@
+[*] Processing domain facebook.com
+[*] Using system resolvers: 127.0.0.53
+[+] Getting nameservers
+129.134.30.12 - a.ns.facebook.com
+129.134.31.12 - b.ns.facebook.com
+185.89.218.12 - c.ns.facebook.com
+185.89.219.12 - d.ns.facebook.com
+[-] Zone transfer failed
+
+[+] IPv6 (AAAA) records found. Try running dnscan with the [32m-6 [0moption.
+2a03:2880:f130:83:face:b00c:0:25de
+[+] TXT records found
+"google-site-verification=wdH5DTJTc9AYNwVunSVFeK0hYDGUIEOGb-RReU6pJlY"
+"v=spf1 redirect=_spf.facebook.com"
+"ghfksmtc0x74q6g76g8nnw3psmx8zkwp"
+"google-site-verification=A2WZWCNQHrGV_TWwKh6KHY90tY0SHZo_RnyMJoDaG0s"
+"google-site-verification=sK6uY9x7eaMoEMfn3OILqwTFYgaNp4llmguKI-C3_iA"
+[+] DMARC records found
+"v=DMARC1; p=reject; rua=mailto:a@dmarc.facebookmail.com; ruf=mailto:fb-dmarc@datafeeds.phishlabs.com; pct=100"
