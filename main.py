@@ -13,9 +13,6 @@ import socket
 
 import pandas as pd
 
-# Install theharvester
-os.system("./install_theharvester.sh")
-
 def URLSCANSubmit(url, headers):
     data = {"url": url, "visibility": "public"}
     response = requests.post('https://urlscan.io/api/v1/scan/', headers=headers, data=json.dumps(data))

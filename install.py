@@ -1,6 +1,6 @@
 import os
 
-os.system("python -m pip install --upgrade pip")
+os.system("python3 -m pip install --upgrade pip")
 os.system("pip install python-dotenv")
 
 os.system("git clone https://github.com/rbsec/dnscan.git")
