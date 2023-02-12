@@ -1,0 +1,15 @@
+Use "all" as a source to have more results
+Cannot use google as a source because of captcha protection
+List of all data sources: 
+    Baidu
+    Bing
+    dnsdumpster
+    Duckduckgo
+    Google
+    Hunter
+    Qwant
+    SecurityTrails
+    Shodan
+    Trello
+    Twitter
+
