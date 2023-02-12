@@ -3,7 +3,7 @@ import argparse
 import pandas as pd
 
 # Install theharvester
-# os.system("./install_theharvester.sh")
+os.system("./install_theharvester.sh")
 
 # Parse arguments
 parser = argparse.ArgumentParser()
