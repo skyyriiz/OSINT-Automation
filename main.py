@@ -64,7 +64,7 @@ def parseArgs():
     if args.ip and args.domain:
         print("You can't use -i and -d at the same time")
 
-    elif not args.vuln:
+    elif args.ip and args.domain and not args.vuln:
         print("You need the amount of vulnérabiltés that you want to see")
 
     elif args.ip and args.vuln:
@@ -74,6 +74,8 @@ def parseArgs():
         os.system("shodan convert " + args.ip + ".json.gz csv")
         os.system("rm " + args.ip + ".json.gz")
         os.system("shodan stats --facets vuln:" + args.vuln + " net:" + args.ip + "/24 > vuln_" + args.ip + ".txt")
+        os.system("mkdir shodan && mv " + args.ip + ".csv shodan/")
+        os.system("mv vuln_" + args.ip + ".txt shodan/")
         print(
             "Toutes les informations sur l'ip ciblé ont été enregistrées dans le fichier " + args.ip + ".csv et toutes ces vulnérabiltés sont enregistrées dans le fichier vuln_" + args.ip + ".txt")
 
@@ -86,6 +88,8 @@ def parseArgs():
             os.system("shodan convert " + domain + ".json.gz csv")
             os.system("rm " + domain + ".json.gz")
             os.system("shodan stats --facets vuln:" + args.vuln + " net:" + domain + "/24 > vuln_" + domain + ".txt")
+            os.system("mkdir shodan && mv " + domain + ".csv shodan/")
+            os.system("mv vuln_" + domain + ".txt shodan/")
             print(
                 "Toutes les informations sur l'ip ciblé ont été enregistrées dans le fichier " + domain + ".csv et toutes ces vulnérabiltés sont enregistrées dans le fichier vuln_" + domain + ".txt")
         else:
@@ -96,11 +100,10 @@ def parseArgs():
             os.system("shodan convert " + domain + ".json.gz csv")
             os.system("rm " + domain + ".json.gz")
             os.system("shodan stats --facets vuln:" + args.vuln + " net:" + domain + "/24 > vuln_" + domain + ".txt")
+            os.system("mkdir shodan && mv " + domain + ".csv shodan/")
+            os.system("mv vuln_" + domain + ".txt shodan/")
             print(
                 "Toutes les informations sur l'ip ciblé ont été enregistrées dans le fichier " + domain + ".csv et toutes ces vulnérabiltés sont enregistrées dans le fichier vuln_" + domain + ".txt")
-
-    else:
-        print("No arguments")
 
     # URLScan
     if args.url:
@@ -118,11 +121,7 @@ def parseArgs():
     output = args.output
     wordlist = args.wordlist
 
-    if not domain:
-        print("[-] Please specify a domain name, use --help for more info")
-        exit()
-
-    elif domain and not output:
+    if domain and not output:
         print("[-] Please specify an output file, use --help for more info")
         exit()
 
@@ -130,14 +129,11 @@ def parseArgs():
         print("[-] Please specify a wordlist file, use --help for more info")
         exit()
 
-    else:
+    elif domain and output and wordlist:
         print("[+] Starting DNS Scan")
         os.system("./dnscan/dnscan.py -d " + domain + " -w " + wordlist + " -o " + output)
 
     # theHavester
-    if not args.email:
-        print("No arguments provided. Use -h for help")
-
     elif args.email and not args.domain:
         print("No domain provided. Use -h for help")
 
@@ -153,8 +149,9 @@ def parseArgs():
     # If all arguments are provided, run theharvester with the arguments and save the results to a file
     elif args.email and args.domain and args.datasource:
         print("Getting emails from " + args.domain + " using " + args.datasource + " data source")
+        os.system("mkdir harvester")
         os.system(
-            "cd theHarvester && ./theHarvester.py -d " + args.domain + " -b " + args.datasource + " -l " + args.limit + " -f " + args.file + " && cp " + args.file + ".json ../ && cp " + args.file + ".xml ../")
+            "cd theHarvester && ./theHarvester.py -d " + args.domain + " -b " + args.datasource + " -l " + args.limit + " -f " + args.file + " && cp " + args.file + ".json ../harvester && cp " + args.file + ".xml ../harvester")
 
 
 
